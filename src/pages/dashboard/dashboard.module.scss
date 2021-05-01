@@ -1,0 +1,38 @@
+@import '../../styles/main';
+
+
+.dashboard {
+    padding: 0em 2em;
+    &Header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2em 0em;
+        border-bottom: .18rem solid $color-black-300;
+
+        &_title{
+            display: flex;
+            align-items: center;
+
+            header{
+                font-size: 2.5rem;
+                font-weight: 500;
+            }
+            &__img {
+                height: 4rem;
+                width: 4rem;
+                margin-right: .5rem;
+                display: flex;
+                align-items: center;
+                svg {
+                    fill: $color-light-grey-300;
+                    width: 3rem;
+                    height: 3em;
+                   
+                }
+            }
+        }
+    }
+}
+
+

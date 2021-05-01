@@ -1,0 +1,44 @@
+@import '../../styles/main';
+
+.button {
+  text-align: center;
+  color: $color-white;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black-300, 0.2);
+   
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black-300, 0.2);
+  }
+  &__big {
+    background-color: $color-black-300;
+    font-size: 1.8rem;
+    font-weight: 300;
+    height: 4rem;
+    width: 20rem;
+  }
+  &__small {
+    background-color: $color-dark-grey-200;
+    font-size: 1.3rem;
+    font-weight: 400;
+    height: 3rem;
+    width: 10rem;
+    border-radius: .3rem;
+  }
+}
