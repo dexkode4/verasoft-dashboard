@@ -1,14 +1,7 @@
 import React from 'react';
-import styles from 'activityCard.module.scss';
+import styles from './activityCard.module.scss';
 import { IActivityCard } from '../../interfaces';
 
-const obj = {
-    "activity": {
-          "sms": 6,
-          "email": 4,
-          "orders": 1
-      }
-  }
 
 
 function ActivityCard({activityType,  activityValue}: IActivityCard) {

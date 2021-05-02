@@ -1,0 +1,26 @@
+@import '../../styles/main.scss';
+
+.tab {
+  background-color: $color-light-grey-200;
+  cursor: pointer;
+  height: 4rem;
+  display: grid;
+  font-size: 1.2rem;
+  place-content: center;
+  width: 16.5rem;
+  transition: all .2s ease-out;
+
+  &:hover {
+      background: $color-black;
+      color: #fff;
+      transform: translateY(-.5rem);
+  }
+
+  &:active {
+      transform: translateY(0rem);
+  }
+
+  &__selected{
+    transform: translateY(0rem);
+  }
+}

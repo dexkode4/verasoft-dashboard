@@ -1,0 +1,14 @@
+@import '../../styles/main.scss';
+
+
+.tabContainer{
+    background-color: $color-light-grey-100;
+    padding-top: 5em;
+    margin-top: .5rem;
+    display: flex;
+    justify-content: center;
+
+    & > *:not(:last-child){
+        margin-right: .2rem;
+    }
+}

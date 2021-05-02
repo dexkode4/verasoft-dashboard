@@ -2,20 +2,46 @@
 
 .userOverview{
     display: grid;
-    grid-template-rows: 20rem;
+    grid-template-rows: 18rem;
     grid-template-columns: repeat(19, 1fr);
     margin-top: .7rem;
     gap: 1rem;
 
-    &__col1{
+    &_col1{
         grid-column: 1 / span 2;
     }
-    &__col2{
+    &_col2{
         grid-column: 3 / span 4;
         background-color: $color-sky-blue;
     }
-    &__col3{
+    &_col3{
         grid-column: 7 / span 9;
-        background-color: $color-sky-blue;
+        position: relative;
+        // height: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        &Title {
+            text-align: center;
+            padding: 1em 0em;
+            font-size: 1.2rem;
+            background-color: $color-sky-blue;
+        }
+        
+        &Grid{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: .4rem;
+            // border: 1px solid green;
+            // height: 100%;
+            flex-grow: 1;
+
+        }
+    }
+
+    &_col4{
+        grid-column: 16 / -1;
+        background: #000;
     }
 }

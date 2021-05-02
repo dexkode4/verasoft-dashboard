@@ -1,3 +1,4 @@
+import React from 'react'
 export interface IUserSummary {
         id: string,
         first_name: string,
@@ -32,4 +33,30 @@ export interface IReduxStore {
 export interface IActivityCard {
     activityType: string,  
     activityValue: number
+}
+
+
+export interface ICarrierStatusCard {
+    date: Date, 
+    status: string, 
+    title: string
+}
+
+export interface ITab {
+    title: string,
+    value : string
+}
+
+
+export interface ITable {
+    schema: ITableSchema[],
+	data: Record<any, any>,
+	onViewRowDetail?: (data: Record<any, any>) => any
+}
+
+
+export type ITableSchema = {
+        name: string,
+        accessor?: string,
+        render?: (data: any) => React.ReactNode
 }
