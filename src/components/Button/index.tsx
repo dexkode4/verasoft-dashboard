@@ -5,7 +5,7 @@ import styles from './button.module.scss';
 
 
 type ButtonProps = {
-    title?: string,
+    title: string,
     handleClick?: () => void,
     customStyle?: any,
     size: any

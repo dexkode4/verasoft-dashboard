@@ -16,10 +16,6 @@ const getMiddleware = () => {
 };
 
 
-// sagaMiddleware.run(watchGetUserSummary)
-
-// export default createStore(reducer, getMiddleware());
-
 const configureStore = () => {
   const store = createStore(rootReducer, getMiddleware());
   sagaMiddleware.run(watchGetUserSummary);

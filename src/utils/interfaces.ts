@@ -1,22 +1,22 @@
 import React from 'react'
 export interface IUserSummary {
-        id: string,
+        id: number | string,
         first_name: string,
         last_name: string,
-        photo_url: string,
+        photo_url: string | null,
         gender: string,
-        birth_date: Date,
+        birth_date: string,
         home_phone: string,
         mobile_phone: string,
         work_phone: string,
         email: string,
-        activity: {
-            sms: number,
+        activity?: {
+            sms: number ,
             email: number,
             orders: number
         },
-        carrier_status: {
-            since: Date,
+        carrier_status?: {
+            since:  string,
             status: string
         }
     
@@ -32,7 +32,8 @@ export interface IReduxStore {
 
 export interface IActivityCard {
     activityType: string,  
-    activityValue: number
+    activityValue: number | string | Date,
+    style?: any
 }
 
 
@@ -51,7 +52,8 @@ export interface ITab {
 export interface ITable {
     schema: ITableSchema[],
 	data: Record<any, any>,
-	onViewRowDetail?: (data: Record<any, any>) => any
+	onViewRowDetail?: (data: Record<any, any>) => any,
+    header?:() => React.ReactNode
 }
 
 
@@ -59,4 +61,26 @@ export type ITableSchema = {
         name: string,
         accessor?: string,
         render?: (data: any) => React.ReactNode
+}
+
+export interface IResponseGenerator{
+    config?:any,
+    data?:any,
+    headers?:any,
+    request?:any,
+    status?:number,
+    statusText?:string
+}
+
+
+export interface IAppState {
+    userSummary :{
+        loading:  boolean,
+        user: IUserSummary
+    }
+}
+
+export interface IUserReducer {
+    loading: boolean,
+    data: IUserSummary
 }

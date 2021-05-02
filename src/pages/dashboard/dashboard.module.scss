@@ -37,3 +37,35 @@
 }
 
 
+.tableHeader {
+    background: $color-dark-grey-200;
+    padding: 1em .5em;
+    display: flex;
+    align-items: center;
+
+    &_left{
+        display: flex;
+        align-items: center;
+
+        &Btn{
+            border: none;
+            padding: .5em 1em;
+            margin-right: 1rem;
+            background: transparent;
+            color: $color-white;
+            border-radius: 100px;
+            transition: all .2s ease-in;
+            cursor: pointer;
+            &:hover{
+                background: $color-white;
+                color: $color-black;
+            }
+
+            &__active {
+                background: $color-white;
+                color: $color-black;
+            }
+        }
+    }
+}
+

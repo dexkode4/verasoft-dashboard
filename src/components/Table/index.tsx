@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ITable } from '../../interfaces'
+import { ITable } from '../../utils/interfaces'
 import { truncateString } from '../../utils/helpers'
+import Button from '../Button'
 
 import styles from './table.module.scss'
 
-function Table({ schema, data, onViewRowDetail }: ITable) {
+function Table({ schema, data, onViewRowDetail, header }: ITable) {
   const _handleViewRowDetail = (rowData: any) => {
     return onViewRowDetail ? onViewRowDetail(rowData) : null
   }
@@ -27,12 +28,19 @@ function Table({ schema, data, onViewRowDetail }: ITable) {
             </td>
           )
         })}
+        <td>
+          <div className={styles.lastCell}>
+            <div>&nbsp;</div>
+            <Button size="sm" title="RESEND" />
+          </div>
+        </td>
       </tr>
     )
   }
 
   return (
     <>
+      {header && header()}
       <div className={styles.tableWrapper}>
         <table className={styles.tableContent}>
           <thead className={styles.tableContent_header}>
@@ -40,6 +48,7 @@ function Table({ schema, data, onViewRowDetail }: ITable) {
               {schema?.map(({ name }, index) => {
                 return <th key={index}>{name}</th>
               })}
+              <th></th>
             </tr>
           </thead>
           <tbody>

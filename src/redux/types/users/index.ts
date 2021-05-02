@@ -1,4 +1,4 @@
-import { IUserSummary } from "../../../interfaces";
+import { IUserSummary } from "../../../utils/interfaces";
 
 export const LOADING_USER_SUMMARY = 'LOADING_USER_SUMMARY';
 

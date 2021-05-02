@@ -4,13 +4,13 @@ import { FaRegUser } from 'react-icons/fa'
 
 type UserGenderCardProp = {
   gender: string
-  dob: Date
+  dob: string
 }
 
-const calculateAge = (date: Date) => {
+const calculateAge = (date: string) => {
   let currYear = new Date()
-  date = new Date(date)
-  return currYear.getFullYear() - date.getFullYear()
+  let dob = new Date(date)
+  return currYear.getFullYear() - dob.getFullYear() || ''
 }
 
 function UserGenderCard({ gender, dob }: UserGenderCardProp) {

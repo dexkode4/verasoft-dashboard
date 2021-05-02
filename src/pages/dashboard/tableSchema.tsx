@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import { ITableSchema } from '../../interfaces'
+import { ITableSchema } from '../../utils/interfaces'
 import { formatDate, formatTime, truncateString } from '../../utils/helpers'
 
 export const tableSchema: ITableSchema[] = [

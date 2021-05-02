@@ -1,5 +1,5 @@
 import React from 'react'
-import { ICarrierStatusCard } from '../../interfaces';
+import { ICarrierStatusCard } from '../../utils/interfaces';
 import styles from './carrierStatusCard.module.scss';
 
 function CarrierStatusCard({date, status, title}: ICarrierStatusCard) {

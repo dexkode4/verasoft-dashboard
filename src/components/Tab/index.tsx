@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './tab.module.scss';
-import { ITab } from '../../interfaces'
+import { ITab } from '../../utils/interfaces'
 
 function Tab({title, value}: ITab) {
     return (

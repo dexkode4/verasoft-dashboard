@@ -1,4 +1,4 @@
-import { IUserSummary } from '../../interfaces'
+import { IUserSummary } from '../../utils/interfaces'
 import { LOADING_USER_SUMMARY, LOADING_USER_SUMMARY_SUCCESS, LOADING_USER_SUMMARY_FAILURE } from '../types'
 
 export interface IGetUserSummaryAction {
@@ -24,5 +24,9 @@ export const getUsersSummaryAsyncStart = () => ({
   export const getUsersSummarySuccess = (data: any) => ({
     type: LOADING_USER_SUMMARY_SUCCESS,
     payload: data
+  });
+  
+  export const getUsersSummaryFailure = () => ({
+    type: LOADING_USER_SUMMARY_FAILURE,
   });
   
