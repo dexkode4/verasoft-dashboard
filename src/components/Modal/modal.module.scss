@@ -1,18 +1,18 @@
 @import "../../styles/main.scss";
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 2em;
   display: flex;
   flex-direction: column;
-
+  
   &_header{
     display: flex;
     justify-content: space-between;
