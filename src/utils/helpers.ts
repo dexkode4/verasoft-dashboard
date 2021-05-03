@@ -26,6 +26,19 @@ export const formatTime = (time: string) => {
 
 export function compareValues(key: string, order = 'asc') {
   return function innerSort(a: any, b: any) {
+    if(key === 'sent_dt'){
+      const varA = a[key].split('-').map((item: string) => parseInt(item)).reduce((acc: number, val: number) => acc + val )
+      const varB = b[key].split('-').map((item: string) => parseInt(item)).reduce((acc: number, val: number) => acc + val )
+
+      let comparison = 0
+      if (varA > varB) {
+        comparison = 1
+      } else if (varA < varB) {
+        comparison = -1
+      }
+      return order === 'desc' ? comparison * -1 : comparison
+
+    }
     if (key === 'subject') {
       const varA = a[key].title
       const varB = b[key].title
