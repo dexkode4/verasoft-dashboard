@@ -58,7 +58,9 @@ export interface ITable {
 export type ITableSchema = {
   name: string
   accessor?: string
-  render?: (data: any) => React.ReactNode
+  render?: (data: any) => React.ReactNode,
+  sortable?: boolean,
+  sortValue: string
 }
 
 export interface IResponseGenerator {

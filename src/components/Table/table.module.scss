@@ -16,6 +16,7 @@ th {
   font-size: 1rem;
   text-align: left;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 
@@ -41,6 +42,11 @@ th {
     border-bottom: 1px solid #D8D8D8;
    
   }
+  tr th {
+    & svg {
+      margin-left: 1rem;
+    }
+  }
 }
   tbody {
     font-size: 1.3rem;
@@ -49,6 +55,7 @@ th {
     tr td{
       padding: .7em .5em;
       line-height: 2.3rem;
+      white-space: nowrap;
     }
     & .lastCell {
      display: flex;

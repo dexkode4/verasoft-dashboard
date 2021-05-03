@@ -12,6 +12,8 @@ export const tableSchema: ITableSchema[] = [
         <div>{formatTime(sent_tm)}</div>
       </>
     ),
+    sortable: true,
+    sortValue: 'sent_dt'
   },
   {
     name: 'Subject',
@@ -21,14 +23,20 @@ export const tableSchema: ITableSchema[] = [
         <div>{subject?.email}</div>
       </>
     ),
+    sortable: true,
+    sortValue: 'subject'
   },
   {
     name: 'COMMUNICATION TYPE',
     accessor: 'type',
+    sortable: true,
+    sortValue: 'type'
   },
   {
     name: 'ORDER #',
     accessor: 'order_id',
+    sortable: true,
+    sortValue: 'order_id'
   },
 
 ]
