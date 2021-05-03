@@ -73,7 +73,7 @@ function Table({ schema, header, orders }: ITable) {
         <table className={styles.tableContent}>
           <thead className={styles.tableContent_header}>
             <tr>
-              {schema?.map(({ name, sortValue }, index) => {
+              { rowData && schema?.map(({ name, sortValue }, index) => {
                 return (
                   <th key={index} onClick={() => handleSort(sortValue)}>
                     {name}

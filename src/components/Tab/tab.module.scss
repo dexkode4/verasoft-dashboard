@@ -9,6 +9,10 @@
   place-content: center;
   width: 16.5rem;
   transition: all .2s ease-out;
+  white-space: nowrap;
+  @media (max-width: 400px) {
+    padding: 0 1em;
+  }
 
   &:hover {
       background: $color-black;

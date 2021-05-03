@@ -7,8 +7,17 @@
     margin-top: .5rem;
     display: flex;
     justify-content: center;
-
+    overflow: auto;
+    width: 100%;
+    @media (max-width: 400px) {
+        justify-content: space-between;
+      }
     & > *:not(:last-child){
         margin-right: .2rem;
+        white-space: nowrap;
+        @media (max-width: 400px) {
+            margin-right: .5rem;
+          }
+        
     }
 }

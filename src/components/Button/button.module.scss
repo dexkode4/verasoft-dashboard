@@ -32,6 +32,11 @@
     font-weight: 300;
     height: 4rem;
     width: 20rem;
+    @media (max-width:450px) {
+      font-size: 1.4rem;
+      height: 3rem;
+      width: 13rem;
+  }
   }
   &__small {
     background-color: $color-dark-grey-200;

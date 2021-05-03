@@ -28,10 +28,21 @@ function UserOverview({ userSummary }: UserOverviewProp) {
             <Skeleton duration={2} height={180} />
           </SkeletonTheme>
         ) : (
+          <>
           <UserGenderCard
             gender={userData?.gender || ''}
             dob={userData?.birth_date || ''}
           />
+          <div className={styles.hidden}> 
+          <UserDetailsCard
+            id={userData?.id || ''}
+            email={userData?.email || ''}
+            mobile_phone={userData?.mobile_phone || ''}
+            home_phone={userData?.home_phone || ''}
+            work_phone={userData?.work_phone || ''}
+          />
+          </div>
+          </>
         )}
       </div>
       <div className={styles.userOverview_col2}>

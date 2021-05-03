@@ -7,13 +7,29 @@
     margin-top: .7rem;
     gap: 1rem;
 
+    @media (max-width:1000px) {
+        display:  flex;
+        flex-direction: column;   
+    }
+
     &_col1{
         grid-column: 1 / span 2;
         height: 100%;
+        @media (max-width:1000px) {
+            background-color: $color-sky-blue;
+            height: 20rem;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+         }
     }
     &_col2{
         grid-column: 3 / span 4;
         background-color: $color-sky-blue;
+        @media (max-width:1000px) {
+           height: 20rem;
+           display: none;
+        }
     }
     &_col3{
         grid-column: 7 / span 9;
@@ -65,4 +81,12 @@
 
 .smsStatus{
     background-color: $color-light-green;
+}
+
+
+.hidden {
+    display: none;
+    @media (max-width: 1000px) {
+        display: flex;
+    }
 }
