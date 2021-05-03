@@ -1,9 +1,9 @@
-import { IUserSummary } from '../../../utils/interfaces'
+import { IUserSummary } from '../../utils/interfaces'
 import {
-  LOADING_USER_SUMMARY,
-  LOADING_USER_SUMMARY_SUCCESS,
-  LOADING_USER_SUMMARY_FAILURE,
-} from '../../types'
+  ORDER_ASYNC_START,
+  ORDER_ASYNC_FAILURE,
+  ORDER_ASYNC_SUCCESS,
+} from '../types'
 
 let initialState = {
   loading: false,
@@ -15,23 +15,23 @@ type action = {
     payload: IUserSummary
 }
 
-const userSummary =  (
+const orders =  (
   state = initialState,
   { type, payload }: action,
 ) => {
     switch (type) {
-        case LOADING_USER_SUMMARY:
+        case ORDER_ASYNC_START:
             return {
                 ...state,
                 loading: true
             }
-        case LOADING_USER_SUMMARY_SUCCESS: 
+        case ORDER_ASYNC_SUCCESS: 
             return {
                 ...state,
                 loading: false,
                 data: payload
             }
-        case LOADING_USER_SUMMARY_FAILURE: 
+        case ORDER_ASYNC_FAILURE: 
             return {
                 ...state,
                 loading: false,
@@ -44,4 +44,4 @@ const userSummary =  (
 }
 
 
-export default userSummary
+export default orders

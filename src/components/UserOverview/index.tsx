@@ -4,45 +4,21 @@ import { IAppState, IUserReducer, IUserSummary } from '../../utils/interfaces'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 import ActivityCard from '../ActivityCard'
-import CarrierStatusCard from '../CarrierStatusCard'
 import UserDetailsCard from '../UserDetailsCard'
 import UserGenderCard from '../UserGenderCard'
 import styles from './useroverview.module.scss'
-
-const obj = {
-  id: 12345678,
-  first_name: 'Joseph',
-  last_name: 'Smith',
-  photo_url: null,
-  gender: 'male',
-  birth_date: '1975-06-18',
-  home_phone: '248-555-1000',
-  mobile_phone: '248-555-3000',
-  work_phone: '248-555-2000',
-  email: 'joe.smith@testemail.com',
-  activity: {
-    sms: 6,
-    email: 4,
-    orders: 1,
-  },
-  carrier_status: {
-    since: '2006-06-02T21:00:00.000Z',
-    status: 'IN',
-  },
-}
 
 type UserOverviewProp = {
   userSummary?: IUserReducer
 }
 
 function UserOverview({ userSummary }: UserOverviewProp) {
-  const [isLoading, setIsLoading] = useState<undefined | boolean>(false)
   const [userData, setUserData] = useState<IUserSummary>()
 
   useEffect(() => {
-    setIsLoading(userSummary?.loading)
     setUserData(userSummary?.data)
   }, [userSummary?.data])
+
   return (
     <div className={styles.userOverview}>
       <div className={styles.userOverview_col1}>

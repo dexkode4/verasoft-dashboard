@@ -1,0 +1,54 @@
+@import "../../styles/main.scss";
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+
+  &_header{
+    display: flex;
+    justify-content: space-between;
+  }
+  &_close {
+    color: $color-white;
+    font-size: 3rem;
+    transition: all .2s ease-in;
+    svg {
+      cursor: pointer;
+      path {
+        fill: $color-white;
+        stroke: $color-white;
+      }
+    }
+
+
+
+    &:hover{
+      transform: rotate(90deg);
+    }
+  }
+
+  &_body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+
+    h1 {
+      font-weight: 300;
+      color: $color-white;
+      font-size: 3rem;
+      margin-top: 3rem;
+    }
+  }
+}

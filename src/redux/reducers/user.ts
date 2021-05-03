@@ -1,13 +1,13 @@
-import { IUserSummary } from '../../../utils/interfaces'
+import { IUserSummary } from '../../utils/interfaces'
 import {
   LOADING_USER_SUMMARY,
   LOADING_USER_SUMMARY_SUCCESS,
   LOADING_USER_SUMMARY_FAILURE,
-} from '../../types'
+} from '../types'
 
 let initialState = {
   loading: false,
-  user: {},
+  data: {},
 }
 
 type action = {
@@ -29,13 +29,13 @@ const userSummary =  (
             return {
                 ...state,
                 loading: false,
-                user: payload
+                data: payload
             }
         case LOADING_USER_SUMMARY_FAILURE: 
             return {
                 ...state,
                 loading: false,
-                user: {}
+                data: {}
             }
     
         default:

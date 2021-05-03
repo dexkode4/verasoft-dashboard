@@ -5,19 +5,22 @@ import Table from '../../components/Table'
 import TabsContainer from '../../components/TabsContainer'
 import UserOverview from '../../components/UserOverview'
 
-import { IReduxStore } from '../../utils/interfaces'
-import { getUsersSummaryAsyncStart } from '../../redux/actions/users'
+import { IAppState, IOrderReducer, IUserReducer } from '../../utils/interfaces'
+import { getUsersSummaryAsyncStart, orderAsyncStart } from '../../redux/actionCreators'
 import { HeaderDashboard } from './components'
 import styles from './dashboard.module.scss'
 import { tableData } from './data'
 import { tableSchema } from './tableSchema'
 
 type DashboardProp = {
-  getUsersSummaryAsyncStart: () => void
+  getUsersSummaryAsyncStart: () => void,
+  userSummary:IUserReducer,
+  orderAsyncStart: () => void,
+  orders: IOrderReducer
 }
 
-const Header = () =>{ 
-  const [active, setActive]  = useState('sent')
+const TableHeader = () =>{ 
+  const [active, setActive]  = useState('sent');
   return (
   <div className={styles.tableHeader}>
     <div className={styles.tableHeader_left}>
@@ -34,22 +37,28 @@ const Header = () =>{
   </div>
 )}
 
-function Dashboard({ getUsersSummaryAsyncStart }: DashboardProp) {
-  useEffect(() => {
+function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart }: DashboardProp) {
+
+  const handleInit = () => {
     getUsersSummaryAsyncStart()
-  }, [getUsersSummaryAsyncStart])
+    orderAsyncStart()
+  }
+  useEffect(() => {
+    handleInit()
+  }, [])
+
   return (
     <div className={styles.dashboard}>
-      <HeaderDashboard name="Joseph Smith" />
+      <HeaderDashboard name={`${userSummary.data.first_name || ''} ${userSummary.data.last_name || ''}`} />
       <UserOverview />
       <TabsContainer />
-      <Table schema={tableSchema} data={tableData.orders_AAA.sent} header={Header} />
+      <Table schema={tableSchema} data={tableData.orders_AAA.sent} header={TableHeader} />
     </div>
   )
 }
 
-const mapStateToProp = ({ userSummary }: IReduxStore) => ({
+const mapStateToProp = ({ userSummary, orders }: IAppState) => ({
   userSummary,
 })
 
-export default connect(mapStateToProp, { getUsersSummaryAsyncStart })(Dashboard)
+export default connect(mapStateToProp, { getUsersSummaryAsyncStart, orderAsyncStart })(Dashboard)

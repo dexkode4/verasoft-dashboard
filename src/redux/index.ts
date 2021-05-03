@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import createSagaMiddleWare from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
-import { watchGetUserSummary } from './sagas/userSummary.saga'
+import rootSaga from './sagas'
 const sagaMiddleware = createSagaMiddleWare()
 
 const getMiddleware = () => {
@@ -18,7 +18,7 @@ const getMiddleware = () => {
 
 const configureStore = () => {
   const store = createStore(rootReducer, getMiddleware());
-  sagaMiddleware.run(watchGetUserSummary);
+  sagaMiddleware.run(rootSaga);
   return store;
 };
 

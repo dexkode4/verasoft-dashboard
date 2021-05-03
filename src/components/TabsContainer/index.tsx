@@ -1,17 +1,21 @@
-import React from 'react'
-import Tab from '../Tab';
-import styles from './tabsContainer.module.scss';
+import React, { useState } from 'react'
+import Tab from '../Tab'
+import styles from './tabsContainer.module.scss'
 
 function TabsContainer() {
-    return (
-        <div className={styles.tabContainer}>
-           <Tab title="ORDERS A" value="A"/>
-           <Tab title="ORDERS AA" value="A"/>
-           <Tab title="ORDERS AAA" value="A"/>
-           <Tab title="ORDERS B" value="A"/>
-           <Tab title="ORDERS C" value="A"/>
-        </div>
-    )
+  const [active, setActive] = useState('orders_AAA')
+  const handleActive = (value: string) => {
+      setActive(value)
+  }
+  return (
+    <div className={styles.tabContainer}>
+      <Tab title="ORDERS A" value="orders_A"  handleActive={handleActive} active={active} />
+      <Tab title="ORDERS AA" value="orders_AA" handleActive={handleActive} active={active}/>
+      <Tab title="ORDERS AAA" value="orders_AAA" handleActive={handleActive} active={active}/>
+      <Tab title="ORDERS B" value="orders_B" handleActive={handleActive} active={active}/>
+      <Tab title="ORDERS C" value="orders_C" handleActive={handleActive} active={active}/>
+    </div>
+  )
 }
 
 export default TabsContainer

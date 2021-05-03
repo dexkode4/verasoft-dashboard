@@ -1,6 +1,6 @@
 import { takeEvery, call,  put } from 'redux-saga/effects'
 import { getUserSummaryData } from '../../api';
-import { getUsersSummaryAsyncStart, getUsersSummarySuccess, getUsersSummaryFailure } from '../actions/users';
+import { getUsersSummaryAsyncStart, getUsersSummarySuccess, getUsersSummaryFailure } from '../actionCreators/users';
 import { LOADING_USER_SUMMARY } from '../types'
 import {IResponseGenerator} from '../../utils/interfaces';
 

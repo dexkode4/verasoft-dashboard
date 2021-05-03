@@ -21,6 +21,12 @@
   }
 
   &__selected{
+    background: $color-black;
+    color: #fff;
     transform: translateY(0rem);
+
+    &:hover{
+      transform: translateY(0rem);
+    }
   }
 }
