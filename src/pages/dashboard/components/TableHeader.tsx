@@ -2,24 +2,29 @@ import React, { useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import styles from '../dashboard.module.scss'
-import { IAppState, IOrder, IOrderReducer } from '../../../utils/interfaces'
-import { getSubData, setSubDataKey } from '../../../redux/actionCreators'
-
+import { IAppState, IOrderReducer } from '../../../utils/interfaces'
+import {
+  setSubDataKey,
+  startGetSubData,
+  stopGetSubData,
+} from '../../../redux/actionCreators'
 
 type TableHeaderProp = {
-    orders?: IOrderReducer
+  orders?: IOrderReducer
 }
 
-const TableHeader = ({orders}: TableHeaderProp) => {
-  const [active, setActive] = useState('sent');
+const TableHeader = ({ orders }: TableHeaderProp) => {
+  const [active, setActive] = useState('sent')
   const dispatch = useDispatch()
 
   const handleClick = (state: string) => {
+    dispatch(startGetSubData())
     setActive(state)
-    let subData = orders?.selectedDataForTable[state]
     dispatch(setSubDataKey(state))
-    
+
+    setTimeout(() => dispatch(stopGetSubData()), 2000)
   }
+
   return (
     <div className={styles.tableHeader}>
       <div className={styles.tableHeader_left}>

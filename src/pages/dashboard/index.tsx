@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import cx from 'classnames';
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Table from '../../components/Table'
 import TabsContainer from '../../components/TabsContainer'
@@ -9,7 +8,6 @@ import { IAppState, IOrderReducer, IUserReducer } from '../../utils/interfaces'
 import { getUsersSummaryAsyncStart, orderAsyncStart } from '../../redux/actionCreators'
 import { HeaderDashboard } from './components'
 import styles from './dashboard.module.scss'
-import { tableData } from './data'
 import { tableSchema } from './tableSchema'
 import TableHeader from './components/TableHeader';
 
@@ -21,7 +19,7 @@ type DashboardProp = {
 }
 
 function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart, orders }: DashboardProp) {
-  const [tableData, setTableData] = useState<any>([]);
+
   const handleInit = () => {
     getUsersSummaryAsyncStart()
     orderAsyncStart()
@@ -30,18 +28,14 @@ function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart, or
     handleInit()
   }, [])
 
-  useEffect(() => {
-    console.log('orders?.selectedDataForTable', orders?.selectedDataForTable)
-    setTableData(orders?.selectedDataForTable)
-  },[orders?.subData, orders?.selectedDataForTable])
-  
+
 
   return (
     <div className={styles.dashboard}>
       <HeaderDashboard name={`${userSummary.data.first_name || ''} ${userSummary.data.last_name || ''}`} />
       <UserOverview />
       <TabsContainer />
-      <Table schema={tableSchema} data={tableData} header={<TableHeader/> || null} />
+      <Table schema={tableSchema} header={<TableHeader/> || null} />
     </div>
   )
 }

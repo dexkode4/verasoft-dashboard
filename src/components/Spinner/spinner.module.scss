@@ -54,3 +54,60 @@
     100% { transform: rotate(360deg); }
   }
 
+
+  
+
+
+  // dotFlashing
+
+
+  .dotFlashing {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #D2D2D2;
+    color: #D2D2D2;
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: .5s;
+  }
+  
+  .dotFlashing::before, .dotFlashing::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  
+  .dotFlashing::before {
+    left: -25px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #D2D2D2;
+    color: #D2D2D2;
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  
+  .dotFlashing::after {
+    left: 25px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #D2D2D2;
+    color: #D2D2D2;
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+  
+  @keyframes dotFlashing {
+    0% {
+      background-color: #D2D2D2;
+    }
+    50%,
+    100% {
+      background-color: #f7f4f4;
+    }
+  }
+  

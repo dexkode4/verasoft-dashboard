@@ -31,7 +31,7 @@ function Modal({ modal }: ModalProp) {
         </div>
 
        <div className={styles.modal_body}>
-           <Spinner/>
+           <Spinner type="SPINNER"/>
            <h1>Processing</h1>
        </div>
       </div>

@@ -1,11 +1,12 @@
-import { IOrder, IOrderReducer, ISent, IUserSummary } from '../../utils/interfaces'
+import { IOrder, IOrderReducer, ISent } from '../../utils/interfaces'
 import {
   ORDER_ASYNC_START,
   ORDER_ASYNC_FAILURE,
   ORDER_ASYNC_SUCCESS,
   CHANGE_TAB,
-  GET_SUB_DATA,
-  SET_SUB_DATA_KEY
+  SET_SUB_DATA_KEY,
+  GET_SUB_DATA_START,
+  GET_SUB_DATA_STOP
 } from '../types'
 
 let initialState: IOrderReducer = {
@@ -20,8 +21,6 @@ let initialState: IOrderReducer = {
     orders_C: [],
   },
   selectedDataForTable: [],
-  subData: [],
-  filter: '',
   subValue: 'sent'
 }
 
@@ -32,7 +31,7 @@ type action = {
   subData: ISent[]
 }
 
-const orders = (state = initialState, { type, payload, dataType, subData }: action) => {
+const orders = (state = initialState, { type, payload, dataType }: action) => {
   switch (type) {
     case ORDER_ASYNC_START:
       return {
@@ -44,7 +43,7 @@ const orders = (state = initialState, { type, payload, dataType, subData }: acti
         ...state,
         loading: false,
         data: payload,
-        selectedDataForTable: payload.orders_AAA.sent,
+        selectedDataForTable: payload.orders_AAA,
         subData : payload.orders_AAA.sent,
       }
     case ORDER_ASYNC_FAILURE:
@@ -58,15 +57,20 @@ const orders = (state = initialState, { type, payload, dataType, subData }: acti
         ...state,
         selectedDataForTable: filterData(state.data, dataType),
       }
-    case GET_SUB_DATA:
-      return {
-        ...state,
-        subData: subData,
-      }
     case SET_SUB_DATA_KEY:
       return {
         ...state,
-        subData: dataType,
+        subValue: dataType,
+      }
+    case GET_SUB_DATA_START:
+      return {
+        ...state,
+        loading: true,
+      }
+    case GET_SUB_DATA_STOP:
+      return {
+        ...state,
+        loading: false,
       }
 
     default:
@@ -80,7 +84,7 @@ const filterData = (data: any, accessor: string) => {
   for (const property in data) {
     if (property.toString() === accessor) {
       console.log(data[accessor])
-      return data[accessor].sent
+      return data[accessor]
     }
   }
 }

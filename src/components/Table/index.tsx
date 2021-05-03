@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { IAppState, ITable } from '../../utils/interfaces'
 import { truncateString } from '../../utils/helpers'
 import Button from '../Button'
 
 import styles from './table.module.scss'
-
+import Spinner from '../Spinner'
 
 function Table({ schema, data, onViewRowDetail, header, orders }: ITable) {
+  const [rowData, setRowData] = useState([])
   const _handleViewRowDetail = (rowData: any) => {
     return onViewRowDetail ? onViewRowDetail(rowData) : null
   }
 
+  useEffect(() => {
+    setRowData(orders?.selectedDataForTable[`${orders?.subValue}`])
+    console.log('rowData', orders?.selectedDataForTable[`${orders?.subValue}`])
+  }, [orders?.subValue, orders?.selectedDataForTable])
 
   const _handleRenderRow = (rowData: any) => {
     return (
@@ -54,11 +59,17 @@ function Table({ schema, data, onViewRowDetail, header, orders }: ITable) {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            {data?.map((row: any) => {
-              return _handleRenderRow(row)
-            })}
-          </tbody>
+          {orders?.loading ? (
+            <div className={styles.tableLoader}>
+              <Spinner type="DOT_FLASH" />
+            </div>
+          ) : (
+            <tbody>
+              {rowData?.map((row: any) => {
+                return _handleRenderRow(row)
+              })}
+            </tbody>
+          )}
         </table>
       </div>
     </>

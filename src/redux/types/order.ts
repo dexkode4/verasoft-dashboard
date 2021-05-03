@@ -4,3 +4,5 @@ export const ORDER_ASYNC_FAILURE = 'ORDER_ASYNC_FAILURE';
 export const CHANGE_TAB = 'CHANGE_TAB';
 export const GET_SUB_DATA = 'GET_SUB_DATA';
 export const SET_SUB_DATA_KEY = 'SET_SUB_DATA_KEY';
+export const GET_SUB_DATA_START = 'GET_SUB_DATA_START';
+export const GET_SUB_DATA_STOP = 'GET_SUB_DATA_STOP';

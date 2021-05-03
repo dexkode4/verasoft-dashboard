@@ -49,7 +49,7 @@ export interface ITab {
 
 export interface ITable {
   schema: ITableSchema[],
-  data: any,
+  data?: any,
   onViewRowDetail?: (data: Record<any, any>) => any,
   header?: React.ReactNode,
   orders?: IOrderReducer
@@ -82,8 +82,6 @@ export interface IAppState {
     loading: boolean
     data: IOrder
     selectedDataForTable: Record<any, any>[]
-    filter: string,
-    subData: any,
     subValue: string
   }
 }
@@ -106,8 +104,6 @@ export interface IOrderReducer {
   loading: boolean
   data: IOrder
   selectedDataForTable: any
-  filter: string,
-  subData: any,
   subValue: string
 }
 
