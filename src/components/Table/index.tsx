@@ -64,11 +64,13 @@ function Table({ schema, data, onViewRowDetail, header, orders }: ITable) {
               <Spinner type="DOT_FLASH" />
             </div>
           ) : (
+            rowData ?
             <tbody>
               {rowData?.map((row: any) => {
                 return _handleRenderRow(row)
               })}
             </tbody>
+            : <div className={styles.emptyTable}>No item</div>
           )}
         </table>
       </div>
