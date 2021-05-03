@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import { IAppState, IUserReducer, IUserSummary } from '../../utils/interfaces'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
@@ -22,7 +23,7 @@ function UserOverview({ userSummary }: UserOverviewProp) {
   return (
     <div className={styles.userOverview}>
       <div className={styles.userOverview_col1}>
-        {userSummary?.loading ? (
+        {userSummary?.loading || _.isEmpty(userSummary?.data) ? (
           <SkeletonTheme color="#f7f9fc" highlightColor="#ffffff">
             <Skeleton duration={2} height={180} />
           </SkeletonTheme>
@@ -34,7 +35,7 @@ function UserOverview({ userSummary }: UserOverviewProp) {
         )}
       </div>
       <div className={styles.userOverview_col2}>
-        {userSummary?.loading ? (
+        {userSummary?.loading || _.isEmpty(userSummary?.data) ? (
           <SkeletonTheme color="#f7f9fc" highlightColor="#ffffff">
             <Skeleton duration={2} height={180} />
           </SkeletonTheme>
@@ -49,7 +50,7 @@ function UserOverview({ userSummary }: UserOverviewProp) {
         )}
       </div>
       <div className={styles.userOverview_col3}>
-        {userSummary?.loading ? (
+        {userSummary?.loading || _.isEmpty(userSummary?.data) ? (
           <SkeletonTheme color="#f7f9fc" highlightColor="#ffffff">
             <Skeleton duration={2} height={180} />
           </SkeletonTheme>
@@ -78,18 +79,26 @@ function UserOverview({ userSummary }: UserOverviewProp) {
       </div>
 
       <div className={styles.userOverview_col4}>
-        <div className={styles.userOverview_col4Title}>
-        SMS CARRIER STATUS
-        </div>
-        <div className={styles.userOverview_col4Grid}>
-          <ActivityCard
-            activityType={`SINCE ${new Date(
-              userData?.carrier_status?.since || '',
-            ).getFullYear()}`}
-            activityValue={userData?.carrier_status?.status || ''}
-            style={styles.smsStatus}
-          />
-        </div>
+        {userSummary?.loading || _.isEmpty(userSummary?.data) ? (
+          <SkeletonTheme color="#f7f9fc" highlightColor="#ffffff">
+            <Skeleton duration={2} height={180} />
+          </SkeletonTheme>
+        ) : (
+          <>
+            <div className={styles.userOverview_col4Title}>
+              SMS CARRIER STATUS
+            </div>
+            <div className={styles.userOverview_col4Grid}>
+              <ActivityCard
+                activityType={`SINCE ${new Date(
+                  userData?.carrier_status?.since || '',
+                ).getFullYear()}`}
+                activityValue={userData?.carrier_status?.status || ''}
+                style={styles.smsStatus}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

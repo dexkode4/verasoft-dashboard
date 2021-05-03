@@ -16,7 +16,6 @@ type ModalProp = {
 function Modal({ modal }: ModalProp) {
   const dispatch = useDispatch()
 
-  console.log('MODAL', modal)
 
   return modal?.modalOpen ? (
     <Portal>

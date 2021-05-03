@@ -48,10 +48,11 @@ export interface ITab {
 }
 
 export interface ITable {
-  schema: ITableSchema[]
-  data: Record<any, any>
-  onViewRowDetail?: (data: Record<any, any>) => any
-  header?: () => React.ReactNode
+  schema: ITableSchema[],
+  data: any,
+  onViewRowDetail?: (data: Record<any, any>) => any,
+  header?: React.ReactNode,
+  orders?: IOrderReducer
 }
 
 export type ITableSchema = {
@@ -77,9 +78,13 @@ export interface IAppState {
   modal: {
     modalOpen: boolean
   }
-  orders:{
-      loading: boolean,
-      data : IOrder
+  orders: {
+    loading: boolean
+    data: IOrder
+    selectedDataForTable: Record<any, any>[]
+    filter: string,
+    subData: any,
+    subValue: string
   }
 }
 
@@ -88,15 +93,32 @@ export interface IUserReducer {
   data: IUserSummary
 }
 
-
 export interface IOrder {
-    orders_A: []
-    orders_AA: []
-    orders_AAA: []
-    orders_B: []
-    orders_C: []
+  orders_A: []
+  orders_AA: []
+  orders_AAA: {
+    sent: []
+  }
+  orders_B: []
+  orders_C: []
 }
 export interface IOrderReducer {
   loading: boolean
   data: IOrder
+  selectedDataForTable: any
+  filter: string,
+  subData: any,
+  subValue: string
+}
+
+export interface ISent {
+  id: number
+  order_id: number
+  sent_dt: string
+  sent_tm: string
+  subject: {
+    title: string
+    email: string
+  }
+  type: string
 }

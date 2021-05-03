@@ -11,6 +11,7 @@ import { HeaderDashboard } from './components'
 import styles from './dashboard.module.scss'
 import { tableData } from './data'
 import { tableSchema } from './tableSchema'
+import TableHeader from './components/TableHeader';
 
 type DashboardProp = {
   getUsersSummaryAsyncStart: () => void,
@@ -19,26 +20,8 @@ type DashboardProp = {
   orders: IOrderReducer
 }
 
-const TableHeader = () =>{ 
-  const [active, setActive]  = useState('sent');
-  return (
-  <div className={styles.tableHeader}>
-    <div className={styles.tableHeader_left}>
-      <button className={cx(styles.tableHeader_leftBtn, active === 'sent'  && styles.tableHeader_leftBtn__active)}
-      onClick={() => {
-        setActive('sent')
-      }}>SENT</button>
-      <button className={cx(styles.tableHeader_leftBtn, active === 'errors'  && styles.tableHeader_leftBtn__active)}
-       onClick={() => {
-        setActive('errors')
-      }}>ERRORS</button>
-    </div>
-    <div className={styles.tableHeader_right}></div>
-  </div>
-)}
-
-function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart }: DashboardProp) {
-
+function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart, orders }: DashboardProp) {
+  const [tableData, setTableData] = useState<any>([]);
   const handleInit = () => {
     getUsersSummaryAsyncStart()
     orderAsyncStart()
@@ -47,18 +30,25 @@ function Dashboard({ getUsersSummaryAsyncStart, userSummary, orderAsyncStart }: 
     handleInit()
   }, [])
 
+  useEffect(() => {
+    console.log('orders?.selectedDataForTable', orders?.selectedDataForTable)
+    setTableData(orders?.selectedDataForTable)
+  },[orders?.subData, orders?.selectedDataForTable])
+  
+
   return (
     <div className={styles.dashboard}>
       <HeaderDashboard name={`${userSummary.data.first_name || ''} ${userSummary.data.last_name || ''}`} />
       <UserOverview />
       <TabsContainer />
-      <Table schema={tableSchema} data={tableData.orders_AAA.sent} header={TableHeader} />
+      <Table schema={tableSchema} data={tableData} header={<TableHeader/> || null} />
     </div>
   )
 }
 
 const mapStateToProp = ({ userSummary, orders }: IAppState) => ({
   userSummary,
+  orders
 })
 
 export default connect(mapStateToProp, { getUsersSummaryAsyncStart, orderAsyncStart })(Dashboard)

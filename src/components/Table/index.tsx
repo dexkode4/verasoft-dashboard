@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { ITable } from '../../utils/interfaces'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { IAppState, ITable } from '../../utils/interfaces'
 import { truncateString } from '../../utils/helpers'
 import Button from '../Button'
 
 import styles from './table.module.scss'
 
-function Table({ schema, data, onViewRowDetail, header }: ITable) {
+
+function Table({ schema, data, onViewRowDetail, header, orders }: ITable) {
   const _handleViewRowDetail = (rowData: any) => {
     return onViewRowDetail ? onViewRowDetail(rowData) : null
   }
+
 
   const _handleRenderRow = (rowData: any) => {
     return (
@@ -40,7 +43,7 @@ function Table({ schema, data, onViewRowDetail, header }: ITable) {
 
   return (
     <>
-      {header && header()}
+      {header && header}
       <div className={styles.tableWrapper}>
         <table className={styles.tableContent}>
           <thead className={styles.tableContent_header}>
@@ -62,4 +65,7 @@ function Table({ schema, data, onViewRowDetail, header }: ITable) {
   )
 }
 
-export default Table
+const mapStateToProp = ({ orders }: IAppState) => ({
+  orders,
+})
+export default connect(mapStateToProp, null)(Table)
