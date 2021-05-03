@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import { GrClose } from 'react-icons/gr'
 import { closeModal } from '../../redux/actionCreators/modal'
@@ -16,6 +16,15 @@ type ModalProp = {
 function Modal({ modal }: ModalProp) {
   const dispatch = useDispatch()
 
+  let body = document.body;
+  useEffect(() => {
+    if(modal?.modalOpen){
+      body.style.overflow = "hidden";
+    }
+    else{
+      body.style.overflow = "auto";
+    }
+  },[modal?.modalOpen])
 
   return modal?.modalOpen ? (
     <Portal>

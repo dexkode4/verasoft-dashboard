@@ -17,6 +17,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+
 ::-moz-selection {
   background: $color-dark-grey-200;
   color: $color-white;
@@ -24,4 +25,8 @@ body {
 ::selection {
   background: $color-dark-grey-200;
   color: $color-white;
+}
+
+.no_scroll {
+  overflow: hidden;
 }
