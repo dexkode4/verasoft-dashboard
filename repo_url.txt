@@ -1,0 +1,3 @@
+Github repo 
+SSH : git@github.com:dexkode4/verasoft-dashboard.git
+HTTPS : https://github.com/dexkode4/verasoft-dashboard.git
